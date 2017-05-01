@@ -18,6 +18,7 @@ class Card {
         const w = this.canvas.width,h = this.canvas.height
         const imX = w/2,imY = h/7 ,imW = image.width,imH = image.height
         const context = this.context
+        const textComponent = new TextComponent(context,this.description,imY+imH*1.2,w,h)
         image.onload = () => {
             context.fillStyle = this.color
             context.fillRect(0,0,w,h)
@@ -32,6 +33,7 @@ class Card {
             context.fillStyle="white"
             context.font = context.font.replace(/\d{2}/,h/15)
             context.fillText(this.title,w/2-context.measureText(this.title).width/2,imY+imH/2+imH/3)
+            textComponent.draw()
             const img = document.createElement('img')
             img.src = this.canvas.toDataURL()
             img.style.position = "absolute"
